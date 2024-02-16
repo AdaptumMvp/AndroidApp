@@ -10,6 +10,11 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.adaptum.adaptumandroid.BuildConfig
+import ru.adaptum.adaptumandroid.data.network.api.AdaptListApi
+import ru.adaptum.adaptumandroid.data.network.api.AuthApi
+import ru.adaptum.adaptumandroid.data.network.api.EventsApi
+import ru.adaptum.adaptumandroid.data.network.api.MessagesApi
+import ru.adaptum.adaptumandroid.data.network.api.ProfileDataApi
 import ru.adaptum.adaptumandroid.domain.handler.TokenDataHandler
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
@@ -63,29 +68,29 @@ class NetworkModule {
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .build()
 
-//    @Provides
-//    @Named("AuthInterceptor")
-//    fun provideAuthApi(
-//        @Named("AuthInterceptor") retrofit: Retrofit,
-//    ): AuthApi = retrofit.create(AuthApi::class.java)
-//
-//    @Provides
-//    @Named("NoAuthInterceptor")
-//    fun provideNoAuthApi(
-//        @Named("NoAuthInterceptor") retrofit: Retrofit,
-//    ): AuthApi = retrofit.create(AuthApi::class.java)
-//
-//    @Provides
-//    fun provideAdaptListApi(retrofit: Retrofit): AdaptListApi = retrofit.create(AdaptListApi::class.java)
-//
-//    @Provides
-//    fun provideProfileDataApi(retrofit: Retrofit): ProfileDataApi = retrofit.create(ProfileDataApi::class.java)
-//
-//    @Provides
-//    fun provideEventsApi(retrofit: Retrofit): EventsApi = retrofit.create(EventsApi::class.java)
-//
-//    @Provides
-//    fun provideMessagesApi(retrofit: Retrofit): MessagesApi = retrofit.create(MessagesApi::class.java)
+    @Provides
+    @Named("AuthInterceptor")
+    fun provideAuthApi(
+        @Named("AuthInterceptor") retrofit: Retrofit,
+    ): AuthApi = retrofit.create(AuthApi::class.java)
+
+    @Provides
+    @Named("NoAuthInterceptor")
+    fun provideNoAuthApi(
+        @Named("NoAuthInterceptor") retrofit: Retrofit,
+    ): AuthApi = retrofit.create(AuthApi::class.java)
+
+    @Provides
+    fun provideAdaptListApi(retrofit: Retrofit): AdaptListApi = retrofit.create(AdaptListApi::class.java)
+
+    @Provides
+    fun provideProfileDataApi(retrofit: Retrofit): ProfileDataApi = retrofit.create(ProfileDataApi::class.java)
+
+    @Provides
+    fun provideEventsApi(retrofit: Retrofit): EventsApi = retrofit.create(EventsApi::class.java)
+
+    @Provides
+    fun provideMessagesApi(retrofit: Retrofit): MessagesApi = retrofit.create(MessagesApi::class.java)
 }
 
 private class AuthInterceptor(

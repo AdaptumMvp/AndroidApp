@@ -2,6 +2,8 @@ package ru.adaptum.adaptumandroid.di.modules
 
 import dagger.Binds
 import dagger.Module
+import ru.adaptum.adaptumandroid.data.handler.TokenDataHandlerImpl
+import ru.adaptum.adaptumandroid.domain.handler.TokenDataHandler
 import ru.adaptum.adaptumandroid.presentation.common.tracker.TimeTracker
 import ru.adaptum.adaptumandroid.presentation.common.tracker.TimeTrackerImpl
 
@@ -10,6 +12,6 @@ abstract class HandlersModule {
     @Binds
     abstract fun provideTimerTracker(timerTracker: TimeTrackerImpl): TimeTracker
 
-//    @Binds
-//    abstract fun provideTokenDataHandler(tokenDataHandler: TokenDataHandlerImpl): TokenDataHandler
+    @Binds
+    abstract fun provideTokenDataHandler(tokenDataHandler: TokenDataHandlerImpl): TokenDataHandler
 }
