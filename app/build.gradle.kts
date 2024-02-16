@@ -8,6 +8,8 @@ android {
     namespace = "ru.adaptum.adaptumandroid"
     compileSdk = 34
 
+    android.buildFeatures.buildConfig = true
+
     defaultConfig {
         applicationId = "ru.adaptum.adaptumandroid"
         minSdk = 24
@@ -23,8 +25,17 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
             isMinifyEnabled = false
+            buildConfigField("String", "BASE_URL", "\"http://79.174.91.72:8000/\"")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+            )
+        }
+        release {
+            isMinifyEnabled = true
+            buildConfigField("String", "BASE_URL", "\"http://79.174.91.72:8000/\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
