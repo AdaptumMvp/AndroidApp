@@ -37,12 +37,37 @@ android {
 }
 
 dependencies {
-    implementation(Dependencies.Core.coreKtx)
-    implementation(Dependencies.Core.appCompat)
-    implementation(Dependencies.Core.material)
-    implementation(Dependencies.Core.constraintLayout)
 
-    testImplementation(Dependencies.Core.Test.junit)
-    androidTestImplementation(Dependencies.Core.Test.androidJunit)
-    androidTestImplementation(Dependencies.Core.Test.espresso)
+    // Core
+    implementation(AppDependencies.Core.coreKtx)
+    implementation(AppDependencies.Core.appCompat)
+    implementation(AppDependencies.Core.material)
+    implementation(AppDependencies.Core.constraintLayout)
+
+    // Lifecycle
+    implementation(AppDependencies.Lifecycle.runtime)
+    implementation(AppDependencies.Lifecycle.viewModel)
+
+    // Retrofit
+    implementation(AppDependencies.Retrofit.retrofit)
+    implementation(AppDependencies.Retrofit.converterGson)
+    implementation(AppDependencies.Retrofit.okHttp)
+    implementation(AppDependencies.Retrofit.okHttpLoggingInterceptor)
+
+    // Room
+    implementation(AppDependencies.Room.room)
+    ksp(AppDependencies.Room.compiler)
+
+    // Dagger
+    implementation(AppDependencies.Dagger.dagger)
+    ksp(AppDependencies.Dagger.compiler)
+
+    // Glide
+    implementation(AppDependencies.Glide.glide)
+    ksp(AppDependencies.Glide.compiler)
+
+    // Test
+    testImplementation(AppDependencies.Core.Test.junit)
+    androidTestImplementation(AppDependencies.Core.Test.androidJunit)
+    androidTestImplementation(AppDependencies.Core.Test.espresso)
 }
