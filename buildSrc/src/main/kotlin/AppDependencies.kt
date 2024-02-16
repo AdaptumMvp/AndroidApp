@@ -5,11 +5,13 @@ object AppDependencies {
         private const val appCompatVersion = "1.6.1"
         private const val materialVersion = "1.11.0"
         private const val constraintLayoutVersion = "2.1.4"
+        private const val fragmentKtxVersion = "1.6.2"
 
         const val coreKtx = "androidx.core:core-ktx:$coreKtxVersion"
         const val appCompat = "androidx.appcompat:appcompat:$appCompatVersion"
         const val material = "com.google.android.material:material:$materialVersion"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+        const val fragmentKtx = "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
 
         object Test {
             private const val junitVersion = "4.13.2"

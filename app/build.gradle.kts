@@ -58,6 +58,7 @@ dependencies {
     implementation(AppDependencies.Core.appCompat)
     implementation(AppDependencies.Core.material)
     implementation(AppDependencies.Core.constraintLayout)
+    implementation(AppDependencies.Core.fragmentKtx)
 
     // Lifecycle
     implementation(AppDependencies.Lifecycle.runtime)
