@@ -2,4 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="primary">#121212</color>
+    <color name="secondary">#1E1E1E</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#8D8D8D</color>
+    <color name="accent">#0B8F92</color>
+    <color name="divider">#333333</color>
+    <color name="error">#CF6679</color>
+    <color name="success">#00D65F</color>
+    <color name="toolbar">#006400</color>
 </resources>

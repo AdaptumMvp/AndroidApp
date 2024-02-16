@@ -1,3 +1,32 @@
 <resources>
-    <string name="app_name">AdaptumAndroid</string>
+    <string name="app_name">Adaptum</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Navigation Drawer-->
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+    <string name="nav_profile">Профиль</string>
+    <string name="plans">Планы</string>
+    <string name="events">События</string>
+    <string name="help">Поддержка</string>
+
+    <!--ProfileScreen-->
+    <string name="logout">Выйти</string>
+    <string name="job">Должность</string>
+    <string name="organization">Организация</string>
+    <string name="mail">Эл.почта</string>
+    <string name="city">Город</string>
+
+    <!--AuthScreen-->
+    <string name="input_username_field">Введите имя пользователя</string>
+    <string name="input_password_field">Введите пароль</string>
+    <string name="auth_button_title">Вход</string>
+    <string name="error_auth_message">Неверный логин или пароль</string>
+    <string name="login_title">Войти</string>
+    <string name="login_text_view_title">Логин</string>
+    <string name="password_text_view_title">Пароль</string>
+
+    <!--TasksScreen-->
+
+
 </resources>

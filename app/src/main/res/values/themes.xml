@@ -1,9 +1,7 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
-    <style name="Base.Theme.AdaptumAndroid" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Theme.AdaptumAndroid" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/toolbar</item>
+        <item name="colorPrimaryDark">@color/toolbar</item>
     </style>
-
-    <style name="Theme.AdaptumAndroid" parent="Base.Theme.AdaptumAndroid" />
 </resources>

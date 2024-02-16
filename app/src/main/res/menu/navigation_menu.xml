@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText">
+
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/nav_profile" />
+
+    <item
+        android:id="@+id/nav_my_plans"
+        android:icon="@drawable/ic_tasks"
+        android:title="@string/plans" />
+
+    <item
+        android:id="@+id/nav_events"
+        android:icon="@drawable/ic_event"
+        android:title="@string/events" />
+
+</menu>
