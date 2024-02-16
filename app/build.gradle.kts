@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -22,7 +23,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -36,12 +37,12 @@ android {
 }
 
 dependencies {
+    implementation(Dependencies.Core.coreKtx)
+    implementation(Dependencies.Core.appCompat)
+    implementation(Dependencies.Core.material)
+    implementation(Dependencies.Core.constraintLayout)
 
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation(Dependencies.Core.Test.junit)
+    androidTestImplementation(Dependencies.Core.Test.androidJunit)
+    androidTestImplementation(Dependencies.Core.Test.espresso)
 }
