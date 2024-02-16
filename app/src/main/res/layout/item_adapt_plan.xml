@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="10dp"
+    android:backgroundTint="@color/secondary">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/start_date_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Дата начала: "
+            android:textColor="@color/text_secondary"
+            app:layout_constraintBottom_toTopOf="@id/plan_name_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/start_date_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10.10.2023"
+            android:textColor="@color/text_secondary"
+            app:layout_constraintBottom_toTopOf="@id/plan_name_tv"
+            app:layout_constraintStart_toEndOf="@+id/start_date_title"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/plan_name_tv"
+            style="@style/TitleTextStyleWhite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:text="Онбоардинг младших менеджеров"
+            app:layout_constraintEnd_toStartOf="@+id/avatar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/start_date_title"
+            tools:text="Онбоардинг младших менеджеров" />
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_user"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/send_message_btn"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:backgroundTint="@color/toolbar"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_mail"
+            app:layout_constraintEnd_toEndOf="@+id/avatar"
+            app:layout_constraintStart_toStartOf="@+id/avatar"
+            app:layout_constraintTop_toBottomOf="@+id/avatar"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/group_name_tv"
+            style="@style/NormalTextStyleWhite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="Линейный персонал"
+            android:textColor="@color/text_secondary"
+            app:layout_constraintEnd_toStartOf="@+id/avatar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/plan_name_tv"
+            tools:text="Линейный персонал" />
+
+        <TextView
+            android:id="@+id/countStages"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/ic_check"
+            android:drawablePadding="3dp"
+            android:gravity="center"
+            android:text="5"
+            android:textColor="@color/white"
+            app:drawableTint="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/group_name_tv"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/countMentors"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/ic_people"
+            android:drawablePadding="3dp"
+            android:gravity="center"
+            android:text="5"
+            android:textColor="@color/white"
+            app:drawableTint="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/countStages"
+            app:layout_constraintTop_toBottomOf="@+id/group_name_tv"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/count_materials"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/ic_book"
+            android:drawablePadding="3dp"
+            android:gravity="center"
+            android:text="5"
+            android:textColor="@color/white"
+            app:drawableTint="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/countMentors"
+            app:layout_constraintTop_toBottomOf="@+id/group_name_tv"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/durationDays"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/ic_time"
+            android:drawablePadding="3dp"
+            android:gravity="center"
+            android:text="17"
+            android:textColor="@color/white"
+            app:drawableTint="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/count_materials"
+            app:layout_constraintTop_toBottomOf="@+id/group_name_tv"
+            app:tint="@color/white" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

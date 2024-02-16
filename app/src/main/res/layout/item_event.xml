@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/secondary"
+    android:layout_margin="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <ImageView
+                android:id="@+id/event_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:src="@drawable/img_training" />
+
+            <TextView
+                android:id="@+id/status_tv"
+                style="@style/NormalTextStyleWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="20dp"
+                android:padding="10dp"
+                android:background="@drawable/rounded_background"
+                android:backgroundTint="@color/active_btn"
+                tools:text="Регистрация" />
+        </FrameLayout>
+
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/TitleTextStyleWhite"
+            android:layout_marginVertical="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="День здоровья" />
+
+        <TextView
+            android:id="@+id/date"
+            android:textColor="@color/white"
+            android:layout_marginVertical="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="08.10.2023" />
+
+        <TextView
+            android:id="@+id/description"
+            style="@style/NormalTextStyleWhite"
+            android:layout_marginVertical="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Описание" />
+
+        <Button
+            android:id="@+id/register_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/active_btn"
+            android:layout_gravity="center"
+            tools:text="Участвовать" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
