@@ -1,9 +1,13 @@
 package ru.adaptum.adaptumandroid.di.modules
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
+import dagger.multibindings.IntoMap
 import ru.adaptum.adaptumandroid.di.AppViewModelFactory
+import ru.adaptum.adaptumandroid.di.ViewModelKey
+import ru.adaptum.adaptumandroid.presentation.viewModels.MainActivityViewModel
 
 @Module
 abstract class ViewModelModule {
@@ -30,10 +34,10 @@ abstract class ViewModelModule {
 //    @ViewModelKey(LoginFragmentViewModel::class)
 //    internal abstract fun bindLoginFragmentViewModel(viewModel: LoginFragmentViewModel): ViewModel
 //
-//    @Binds
-//    @IntoMap
-//    @ViewModelKey(MainActivityViewModel::class)
-//    internal abstract fun bindMainActivityViewModel(viewModel: MainActivityViewModel): ViewModel
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainActivityViewModel::class)
+    internal abstract fun bindMainActivityViewModel(viewModel: MainActivityViewModel): ViewModel
 //
 //    @Binds
 //    @IntoMap

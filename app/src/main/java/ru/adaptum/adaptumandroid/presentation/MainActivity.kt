@@ -6,19 +6,22 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import ru.adaptum.adaptumandroid.AdaptumApp
 import ru.adaptum.adaptumandroid.R
 import ru.adaptum.adaptumandroid.presentation.common.ToolbarVisibilityListener
+import ru.adaptum.adaptumandroid.presentation.viewModels.MainActivityViewModel
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), ToolbarVisibilityListener {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
 
-//    @Inject
-//    lateinit var mainActivityViewModel: MainActivityViewModel
+    @Inject
+    lateinit var mainActivityViewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        (application as AdaptumApp).appComponent.inject(this)
+        (application as AdaptumApp).appComponent.inject(this)
         setContentView(R.layout.activity_main)
         initBaseToolbar()
         bindViewModel()
