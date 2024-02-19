@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import kotlinx.coroutines.flow.filterNotNull
 import ru.adaptum.adaptumandroid.AdaptumApp
 import ru.adaptum.adaptumandroid.R
 import ru.adaptum.adaptumandroid.databinding.FragmentProfileBinding
@@ -45,8 +46,13 @@ class ProfileFragment : Fragment() {
     }
 
     private fun bindViewModel() {
-        collectFlow(viewModel.profileDataState) {
-            it?.let { it1 -> setViews(it1) }
+        collectFlow(viewModel.profileDataState.filterNotNull()) {
+            setViews(it)
+        }
+        collectFlow(viewModel.logoutCommand) {
+            if (it != null) {
+                Navigator.navigateReplace(LoginFragment(), parentFragmentManager)
+            }
         }
     }
 
@@ -80,7 +86,6 @@ class ProfileFragment : Fragment() {
                 }
                 logoutBtn.setOnClickListener {
                     viewModel.logout()
-                    Navigator.navigateReplace(LoginFragment(), parentFragmentManager)
                 }
             }
         }

@@ -1,12 +1,13 @@
 package ru.adaptum.adaptumandroid.data.repository
 
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import ru.adaptum.adaptumandroid.data.network.api.AuthApi
+import ru.adaptum.adaptumandroid.domain.entity.State
 import ru.adaptum.adaptumandroid.domain.entity.Token
 import ru.adaptum.adaptumandroid.domain.entity.User
 import ru.adaptum.adaptumandroid.domain.handler.TokenDataHandler
 import ru.adaptum.adaptumandroid.domain.repository.AuthRepository
-import java.lang.Exception
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -23,16 +24,19 @@ class AuthRepositoryImpl
 
         override fun auth(user: User) =
             flow {
-                try {
-                    val tokenDataDto = authApi.auth(user)
-                    saveTokenData(tokenDataDto.toDomainModel())
-                    emit(tokenDataDto.toDomainModel())
-                } catch (e: Exception) {
-                    emit(Token(""))
-                }
+                emit(State.Loading)
+                saveTokenData(authApi.auth(user).toDomainModel())
+                emit(State.Success(Unit))
+            }.catch {
+                emit(State.Failure(it.fillInStackTrace()))
             }
 
-        override fun logout() {
-            tokenDataHandler.removeToken()
-        }
+        override fun logout() =
+            flow {
+                emit(State.Loading)
+                tokenDataHandler.removeToken()
+                emit(State.Success(Unit))
+            }.catch {
+                emit(State.Failure(it.fillInStackTrace()))
+            }
     }

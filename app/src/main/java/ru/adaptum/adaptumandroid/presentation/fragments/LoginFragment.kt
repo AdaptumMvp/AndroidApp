@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import ru.adaptum.adaptumandroid.AdaptumApp
 import ru.adaptum.adaptumandroid.databinding.FragmentLoginBinding
@@ -54,11 +55,18 @@ class LoginFragment : Fragment() {
     }
 
     private fun bindViewModel() {
-        collectFlow(viewModel.authStatusState) {
-            if (it) {
+        collectFlow(viewModel.loginFragmentState) {
+            if (it.success) {
+                binding.progressBar.isVisible = false
                 openPlansScreen()
-            } else {
-                showToast("Error")
+                return@collectFlow
+            }
+            if (it.loading) {
+                binding.progressBar.isVisible = true
+            }
+            if (!it.error.isNullOrBlank()) {
+                binding.progressBar.isVisible = false
+                showToast(it.error)
             }
         }
     }
