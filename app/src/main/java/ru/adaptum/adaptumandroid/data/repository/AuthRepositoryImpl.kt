@@ -3,18 +3,18 @@ package ru.adaptum.adaptumandroid.data.repository
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import ru.adaptum.adaptumandroid.data.network.api.AuthApi
+import ru.adaptum.adaptumandroid.di.modules.NoAuthInterceptorApi
 import ru.adaptum.adaptumandroid.domain.entity.State
 import ru.adaptum.adaptumandroid.domain.entity.Token
 import ru.adaptum.adaptumandroid.domain.entity.User
 import ru.adaptum.adaptumandroid.domain.handler.TokenDataHandler
 import ru.adaptum.adaptumandroid.domain.repository.AuthRepository
 import javax.inject.Inject
-import javax.inject.Named
 
 class AuthRepositoryImpl
     @Inject
     constructor(
-        @Named("NoAuthInterceptor")
+        @NoAuthInterceptorApi
         private val authApi: AuthApi,
         private val tokenDataHandler: TokenDataHandler,
     ) : AuthRepository {

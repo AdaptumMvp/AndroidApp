@@ -17,8 +17,16 @@ import ru.adaptum.adaptumandroid.data.network.api.MessagesApi
 import ru.adaptum.adaptumandroid.data.network.api.ProfileDataApi
 import ru.adaptum.adaptumandroid.domain.handler.TokenDataHandler
 import java.util.concurrent.TimeUnit
-import javax.inject.Named
+import javax.inject.Qualifier
 import javax.inject.Singleton
+
+@Qualifier
+@Retention
+annotation class AuthInterceptorApi
+
+@Qualifier
+@Retention
+annotation class NoAuthInterceptorApi
 
 @Module
 class NetworkModule {
@@ -33,7 +41,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    @Named("AuthInterceptor")
+    @AuthInterceptorApi
     fun provideRetrofit(tokenDataHandler: TokenDataHandler): Retrofit =
         Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
@@ -43,7 +51,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    @Named("NoAuthInterceptor")
+    @NoAuthInterceptorApi
     fun provideRetrofitNoAuth(): Retrofit =
         Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
@@ -69,15 +77,15 @@ class NetworkModule {
             .build()
 
     @Provides
-    @Named("AuthInterceptor")
+    @AuthInterceptorApi
     fun provideAuthApi(
-        @Named("AuthInterceptor") retrofit: Retrofit,
+        @AuthInterceptorApi retrofit: Retrofit,
     ): AuthApi = retrofit.create(AuthApi::class.java)
 
     @Provides
-    @Named("NoAuthInterceptor")
+    @NoAuthInterceptorApi
     fun provideNoAuthApi(
-        @Named("NoAuthInterceptor") retrofit: Retrofit,
+        @NoAuthInterceptorApi retrofit: Retrofit,
     ): AuthApi = retrofit.create(AuthApi::class.java)
 
     @Provides
