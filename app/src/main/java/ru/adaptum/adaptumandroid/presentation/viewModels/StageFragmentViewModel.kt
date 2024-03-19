@@ -9,6 +9,7 @@ import kotlinx.coroutines.launch
 import ru.adaptum.adaptumandroid.domain.useCase.CompleteStageUseCase
 import ru.adaptum.adaptumandroid.domain.useCase.GetStagesUseCase
 import ru.adaptum.adaptumandroid.presentation.model.StageListItem
+import java.lang.Exception
 import javax.inject.Inject
 
 class StageFragmentViewModel
@@ -29,8 +30,12 @@ class StageFragmentViewModel
 
         fun onClickAccept(timeSpent: Int) {
             viewModelScope.launch {
-                val userDataOnStageKeys = _stageDataState.value?.userDataOnStageKeys
-                userDataOnStageKeys?.let { completeStageUseCase.invoke(timeSpent, it) }
+                try {
+                    val userDataOnStageKeys = _stageDataState.value?.userDataOnStageKeys
+                    userDataOnStageKeys?.let { completeStageUseCase.invoke(timeSpent, it) }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
             }
         }
     }
