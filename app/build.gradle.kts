@@ -27,7 +27,7 @@ android {
     buildTypes {
         debug {
             isMinifyEnabled = false
-            buildConfigField("String", "BASE_URL", "\"http://79.174.91.72:8000/\"")
+            buildConfigField("String", "BASE_URL", "\"http://79.174.80.178:8000/\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
@@ -35,7 +35,7 @@ android {
         }
         release {
             isMinifyEnabled = true
-            buildConfigField("String", "BASE_URL", "\"http://79.174.91.72:8000/\"")
+            buildConfigField("String", "BASE_URL", "\"http://79.174.80.178:8000/\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
