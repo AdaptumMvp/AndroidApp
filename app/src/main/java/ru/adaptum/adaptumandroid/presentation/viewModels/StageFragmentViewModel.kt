@@ -8,14 +8,12 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.adaptum.adaptumandroid.domain.useCase.CompleteStageUseCase
-import ru.adaptum.adaptumandroid.domain.useCase.GetStagesUseCase
 import ru.adaptum.adaptumandroid.presentation.model.StageListItem
 import javax.inject.Inject
 
 class StageFragmentViewModel
     @Inject
     constructor(
-        private val getStagesUseCase: GetStagesUseCase,
         private val completeStageUseCase: CompleteStageUseCase,
     ) : ViewModel() {
         private var _stageDataState = MutableStateFlow<StageListItem?>(null)
