@@ -2,6 +2,7 @@ package ru.adaptum.adaptumandroid.presentation.viewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -9,7 +10,6 @@ import kotlinx.coroutines.launch
 import ru.adaptum.adaptumandroid.domain.useCase.CompleteStageUseCase
 import ru.adaptum.adaptumandroid.domain.useCase.GetStagesUseCase
 import ru.adaptum.adaptumandroid.presentation.model.StageListItem
-import java.lang.Exception
 import javax.inject.Inject
 
 class StageFragmentViewModel
@@ -29,13 +29,9 @@ class StageFragmentViewModel
         }
 
         fun onClickAccept(timeSpent: Int) {
-            viewModelScope.launch {
-                try {
-                    val userDataOnStageKeys = _stageDataState.value?.userDataOnStageKeys
-                    userDataOnStageKeys?.let { completeStageUseCase.invoke(timeSpent, it) }
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
+            viewModelScope.launch(CoroutineExceptionHandler { coroutineContext, throwable -> throwable.printStackTrace() }) {
+                val userDataOnStageKeys = _stageDataState.value?.userDataOnStageKeys
+                userDataOnStageKeys?.let { completeStageUseCase.invoke(timeSpent, it) }
             }
         }
     }
