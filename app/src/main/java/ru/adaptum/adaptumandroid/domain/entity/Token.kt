@@ -1,3 +1,4 @@
 package ru.adaptum.adaptumandroid.domain.entity
 
-data class Token(val token: String)
+@JvmInline
+value class Token(val token: String)
