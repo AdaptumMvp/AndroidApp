@@ -2,6 +2,7 @@ package ru.adaptum.adaptumandroid.presentation.viewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -31,26 +32,23 @@ class ProfileFragmentViewModel
             get() = _logoutCommand.asSharedFlow()
 
         fun init() {
-            viewModelScope.launch {
-                try {
-                    val profileData = getProfileDataUseCase()
-                    _profileDataState.emit(ProfileDataUI.fromProfileData(profileData))
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
+            viewModelScope.launch(CoroutineExceptionHandler { coroutineContext, throwable -> throwable.printStackTrace() }) {
+                _profileDataState.emit(ProfileDataUI.fromProfileData(getProfileDataUseCase()))
             }
         }
 
         fun logout() {
             viewModelScope.launch {
-                logoutUseCase.invoke().collectLatest {
+                logoutUseCase().collectLatest {
                     when (it) {
                         is State.Loading -> {}
                         is State.Success -> {
                             _logoutCommand.emit(Unit)
                         }
+
                         is State.Failure -> {
                         }
+
                         is State.Empty -> {}
                     }
                 }

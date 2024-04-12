@@ -2,6 +2,7 @@ package ru.adaptum.adaptumandroid.presentation.viewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -12,7 +13,6 @@ import kotlinx.coroutines.launch
 import ru.adaptum.adaptumandroid.domain.handler.TokenDataHandler
 import ru.adaptum.adaptumandroid.domain.useCase.GetProfileDataUseCase
 import ru.adaptum.adaptumandroid.presentation.model.ProfileDataUI
-import java.lang.Exception
 import javax.inject.Inject
 
 class MainActivityViewModel
@@ -31,19 +31,13 @@ class MainActivityViewModel
 
         fun checkUserAuthorized() {
             viewModelScope.launch {
-                val tokenIsNotEmpty = tokenDataHandler.isTokenNotEmpty()
-                _isAuthorizedState.emit(tokenIsNotEmpty)
+                _isAuthorizedState.emit(tokenDataHandler.isTokenNotEmpty())
             }
         }
 
         fun getProfileData() {
-            viewModelScope.launch {
-                try {
-                    val profileData = getProfileDataUseCase()
-                    _profileDataState.emit(ProfileDataUI.fromProfileData(profileData))
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
+            viewModelScope.launch(CoroutineExceptionHandler { coroutineContext, throwable -> throwable.printStackTrace() }) {
+                _profileDataState.emit(ProfileDataUI.fromProfileData(getProfileDataUseCase()))
             }
         }
     }
