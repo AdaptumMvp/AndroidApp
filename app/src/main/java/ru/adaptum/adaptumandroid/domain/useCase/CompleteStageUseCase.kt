@@ -9,7 +9,7 @@ class CompleteStageUseCase
     constructor(
         private val plansRepository: PlansRepository,
     ) {
-        suspend fun invoke(
+        suspend operator fun invoke(
             timeSpent: Int,
             userDataOnStageKeys: UserDataOnStageKeys,
         ) = plansRepository.completeStage(timeSpent, userDataOnStageKeys)

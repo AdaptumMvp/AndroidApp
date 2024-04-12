@@ -27,8 +27,7 @@ class StageFragmentViewModel
 
         fun onClickAccept(timeSpent: Int) {
             viewModelScope.launch(CoroutineExceptionHandler { coroutineContext, throwable -> throwable.printStackTrace() }) {
-                val userDataOnStageKeys = _stageDataState.value?.userDataOnStageKeys
-                userDataOnStageKeys?.let { completeStageUseCase.invoke(timeSpent, it) }
+                completeStageUseCase(timeSpent, stageListItem.userDataOnStageKeys)
             }
         }
     }
