@@ -12,12 +12,8 @@ class AppViewModelFactory
     ) :
     ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            val provider = viewModelProviders[modelClass]
-            if (provider != null) {
-                return provider.get() as T
-            } else {
-                throw IllegalArgumentException("Incorrect ViewModel")
+        override fun <T : ViewModel> create(modelClass: Class<T>) =
+            with(viewModelProviders[modelClass]) {
+                if (this != null) this.get() as T else throw IllegalArgumentException("Incorrect ViewModel")
             }
-        }
     }

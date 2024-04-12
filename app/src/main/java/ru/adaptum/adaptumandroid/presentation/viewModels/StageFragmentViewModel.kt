@@ -15,15 +15,14 @@ class StageFragmentViewModel
     @Inject
     constructor(
         private val completeStageUseCase: CompleteStageUseCase,
+        private val stageListItem: StageListItem,
     ) : ViewModel() {
         private var _stageDataState = MutableStateFlow<StageListItem?>(null)
         val stageDataState: StateFlow<StageListItem?>
             get() = _stageDataState.asStateFlow()
 
-        fun init(stageListItem: StageListItem) {
-            viewModelScope.launch {
-                _stageDataState.emit(stageListItem)
-            }
+        fun init() {
+            _stageDataState.value = stageListItem
         }
 
         fun onClickAccept(timeSpent: Int) {

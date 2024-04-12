@@ -26,7 +26,13 @@ class StageFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (requireActivity().application as AdaptumApp).appComponent.inject(this)
+        (requireActivity().application as AdaptumApp).appComponent.fragmentComponentFactory()
+            .create(
+                Gson().fromJson(
+                    requireArguments().getString(STAGE_PARAM)!!,
+                    StageListItem::class.java,
+                ) as StageListItem,
+            ).inject(this)
     }
 
     override fun onCreateView(
@@ -43,18 +49,11 @@ class StageFragment : Fragment() {
         savedInstanceState: Bundle?,
     ) {
         super.onViewCreated(view, savedInstanceState)
-        bindViewModel()
-        arguments?.getString(STAGE_PARAM)?.let {
-            viewModel.init(
-                Gson().fromJson(
-                    it,
-                    StageListItem::class.java,
-                ) as StageListItem,
-            )
-        }
         setFragmentResultListener(TrackerFragment.FRAGMENT_RESULT_KEY) { _, bundle ->
             binding.timeTrackingValue.text = bundle.getString(TrackerFragment.TIME_TRACKING_KEY)
         }
+        bindViewModel()
+        viewModel.init()
     }
 
     private fun bindViewModel() {

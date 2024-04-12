@@ -12,7 +12,6 @@ import ru.adaptum.adaptumandroid.presentation.fragments.ChatFragment
 import ru.adaptum.adaptumandroid.presentation.fragments.EventsFragment
 import ru.adaptum.adaptumandroid.presentation.fragments.LoginFragment
 import ru.adaptum.adaptumandroid.presentation.fragments.ProfileFragment
-import ru.adaptum.adaptumandroid.presentation.fragments.StageFragment
 import ru.adaptum.adaptumandroid.presentation.fragments.StagesFragment
 import ru.adaptum.adaptumandroid.presentation.fragments.TrackerFragment
 import javax.inject.Singleton
@@ -42,7 +41,7 @@ interface AppComponent {
 
     fun inject(adaptPlansFragment: AdaptPlansFragment)
 
-    fun inject(stageFragment: StageFragment)
-
     fun inject(stageFragment: ChatFragment)
+
+    fun fragmentComponentFactory(): FragmentComponent.Factory
 }
