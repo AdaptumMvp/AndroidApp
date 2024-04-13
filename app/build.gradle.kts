@@ -24,6 +24,13 @@ android {
         viewBinding = true
     }
 
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = AppDependencies.Compose.composeСompilerVersion
+    }
+
     buildTypes {
         debug {
             isMinifyEnabled = false
@@ -42,10 +49,12 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -81,6 +90,15 @@ dependencies {
     // Glide
     implementation(AppDependencies.Glide.glide)
     ksp(AppDependencies.Glide.compiler)
+
+    // Compose
+    implementation(AppDependencies.Compose.ui)
+    implementation(AppDependencies.Compose.activityCompose)
+    implementation(AppDependencies.Compose.material)
+    implementation(AppDependencies.Compose.uiToolingPreview)
+
+    androidTestImplementation(AppDependencies.Compose.junit)
+    debugImplementation(AppDependencies.Compose.uiTooling)
 
     // Test
     testImplementation(AppDependencies.Core.Test.junit)

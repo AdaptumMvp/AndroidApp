@@ -32,7 +32,6 @@ object AppDependencies {
     }
 
     object Retrofit {
-        // Retrofit
         private const val retrofitVersion = "2.9.0"
         private const val okHttpVersion = "4.9.3"
 
@@ -57,11 +56,24 @@ object AppDependencies {
     }
 
     object Glide {
-        // Glide
         private const val glideVersion = "4.15.1"
         private const val compilerVersion = "4.12.0"
 
         const val glide = "com.github.bumptech.glide:glide:$glideVersion"
         const val compiler = "com.github.bumptech.glide:compiler:$compilerVersion"
+    }
+
+    object Compose {
+        const val composeСompilerVersion = "1.5.10"
+
+        private const val composeVersion = "1.6.5"
+        private const val activityComposeVersion = "1.8.2"
+
+        const val ui = "androidx.compose.ui:ui:$composeVersion"
+        const val material = "androidx.compose.material:material:$composeVersion"
+        const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview:$composeVersion"
+        const val activityCompose = "androidx.activity:activity-compose:$activityComposeVersion"
+        const val junit = "androidx.compose.ui:ui-test-junit4:$composeVersion"
+        const val uiTooling = "androidx.compose.ui:ui-tooling:$composeVersion"
     }
 }
