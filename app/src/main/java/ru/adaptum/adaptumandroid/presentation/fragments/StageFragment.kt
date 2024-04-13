@@ -9,11 +9,12 @@ import android.webkit.WebViewClient
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
-import com.google.gson.Gson
 import ru.adaptum.adaptumandroid.AdaptumApp
 import ru.adaptum.adaptumandroid.databinding.FragmentStageBinding
 import ru.adaptum.adaptumandroid.presentation.common.Navigator
 import ru.adaptum.adaptumandroid.presentation.common.collectFlow
+import ru.adaptum.adaptumandroid.presentation.common.fromJson
+import ru.adaptum.adaptumandroid.presentation.common.toJson
 import ru.adaptum.adaptumandroid.presentation.model.StageListItem
 import ru.adaptum.adaptumandroid.presentation.viewModels.StageFragmentViewModel
 import javax.inject.Inject
@@ -27,12 +28,8 @@ class StageFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (requireActivity().application as AdaptumApp).appComponent.fragmentComponentFactory()
-            .create(
-                Gson().fromJson(
-                    requireArguments().getString(STAGE_PARAM)!!,
-                    StageListItem::class.java,
-                ) as StageListItem,
-            ).inject(this)
+            .create(fromJson<StageListItem>(requireArguments().getString(STAGE_PARAM)!!))
+            .inject(this)
     }
 
     override fun onCreateView(
@@ -105,7 +102,7 @@ class StageFragment : Fragment() {
             StageFragment().apply {
                 arguments =
                     Bundle().apply {
-                        putString(STAGE_PARAM, Gson().toJson(stageListItem))
+                        putString(STAGE_PARAM, toJson(stageListItem))
                     }
             }
     }

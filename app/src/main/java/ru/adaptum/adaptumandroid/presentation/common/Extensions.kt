@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -40,4 +41,12 @@ fun <T> Fragment.collectFlow(
 
 fun Fragment.showToast(text: String) {
     Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
+}
+
+inline fun <reified T> fromJson(json: String): T {
+    return Gson().fromJson(json, T::class.java)
+}
+
+inline fun <reified T> toJson(t: T): String {
+    return Gson().toJson(t, T::class.java)
 }
