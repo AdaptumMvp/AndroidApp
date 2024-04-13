@@ -68,6 +68,7 @@ object AppDependencies {
 
         private const val composeVersion = "1.6.5"
         private const val activityComposeVersion = "1.8.2"
+        private const val viewModelVersion = "2.5.1"
 
         const val ui = "androidx.compose.ui:ui:$composeVersion"
         const val material = "androidx.compose.material:material:$composeVersion"
@@ -75,5 +76,6 @@ object AppDependencies {
         const val activityCompose = "androidx.activity:activity-compose:$activityComposeVersion"
         const val junit = "androidx.compose.ui:ui-test-junit4:$composeVersion"
         const val uiTooling = "androidx.compose.ui:ui-tooling:$composeVersion"
+        const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:$viewModelVersion"
     }
 }

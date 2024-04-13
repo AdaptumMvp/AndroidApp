@@ -81,6 +81,7 @@ dependencies {
 
     // Room
     implementation(AppDependencies.Room.room)
+    implementation("androidx.compose.material3:material3-android:1.2.1")
     ksp(AppDependencies.Room.compiler)
 
     // Dagger
@@ -96,6 +97,7 @@ dependencies {
     implementation(AppDependencies.Compose.activityCompose)
     implementation(AppDependencies.Compose.material)
     implementation(AppDependencies.Compose.uiToolingPreview)
+    implementation(AppDependencies.Compose.viewModel)
 
     androidTestImplementation(AppDependencies.Compose.junit)
     debugImplementation(AppDependencies.Compose.uiTooling)

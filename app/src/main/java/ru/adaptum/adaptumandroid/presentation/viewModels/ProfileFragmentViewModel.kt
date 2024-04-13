@@ -1,14 +1,12 @@
 package ru.adaptum.adaptumandroid.presentation.viewModels
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.adaptum.adaptumandroid.domain.entity.State
@@ -23,17 +21,15 @@ class ProfileFragmentViewModel
         private val getProfileDataUseCase: GetProfileDataUseCase,
         private val logoutUseCase: LogoutUseCase,
     ) : ViewModel() {
-        private var _profileDataState = MutableStateFlow<ProfileDataUI?>(null)
-        val profileDataState: StateFlow<ProfileDataUI?>
-            get() = _profileDataState.asStateFlow()
-
         private val _logoutCommand = MutableSharedFlow<Unit?>()
         val logoutCommand: SharedFlow<Unit?>
             get() = _logoutCommand.asSharedFlow()
 
+        val profileState = mutableStateOf<ProfileDataUI?>(null)
+
         fun init() {
             viewModelScope.launch(CoroutineExceptionHandler { coroutineContext, throwable -> throwable.printStackTrace() }) {
-                _profileDataState.emit(ProfileDataUI.fromProfileData(getProfileDataUseCase()))
+                profileState.value = ProfileDataUI.fromProfileData(getProfileDataUseCase())
             }
         }
 
