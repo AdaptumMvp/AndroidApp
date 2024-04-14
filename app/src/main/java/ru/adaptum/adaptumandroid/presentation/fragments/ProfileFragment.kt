@@ -18,12 +18,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Divider
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.Text
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -121,7 +121,7 @@ fun ProfileHeader(
             Spacer(modifier = Modifier.width(24.dp))
             Text(
                 text = profileData?.name ?: "",
-                style = MaterialTheme.typography.h6,
+                style = MaterialTheme.typography.titleLarge,
                 color = Color.White,
                 modifier = Modifier.width(120.dp),
             )
@@ -133,7 +133,8 @@ fun ProfileHeader(
                 colors =
                     ButtonDefaults.outlinedButtonColors(
                         contentColor = colorResource(id = R.color.success),
-                        backgroundColor = colorResource(id = R.color.secondary),
+                        containerColor =
+                            colorResource(id = R.color.secondary),
                     ),
                 border = BorderStroke(1.dp, colorResource(id = R.color.success)),
             ) {
@@ -153,7 +154,12 @@ fun ProfileHeader(
 
 @Composable
 fun ProfileAdditionalInfo(profileData: ProfileDataUI?) {
-    Column(modifier = Modifier.background(color = colorResource(id = R.color.primary))) {
+    Column(
+        modifier =
+            Modifier
+                .background(color = colorResource(id = R.color.primary))
+                .padding(top = 10.dp),
+    ) {
         ProfileAdditionalInfoItem(
             icon = R.drawable.ic_work,
             title = stringResource(id = R.string.job),
@@ -202,20 +208,20 @@ fun ProfileAdditionalInfoItem(
             Column {
                 Text(
                     text = title,
-                    style = MaterialTheme.typography.body1,
+                    style = MaterialTheme.typography.bodyLarge,
                     color = Color.White,
                 )
                 Text(
                     text = description,
                     color = colorResource(id = R.color.text_secondary),
                 )
-                Divider(
+                HorizontalDivider(
                     modifier =
                         Modifier
                             .fillMaxWidth()
                             .padding(top = 5.dp, bottom = 5.dp),
-                    color = Color.Gray,
                     thickness = 2.dp,
+                    color = Color.Gray,
                 )
             }
         }
