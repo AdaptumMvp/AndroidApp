@@ -58,9 +58,11 @@ object AppDependencies {
     object Glide {
         private const val glideVersion = "4.15.1"
         private const val compilerVersion = "4.12.0"
+        private const val glideComposeVersion = "1.0.0-beta01"
 
         const val glide = "com.github.bumptech.glide:glide:$glideVersion"
         const val compiler = "com.github.bumptech.glide:compiler:$compilerVersion"
+        const val glide_compose = "com.github.bumptech.glide:compose:$glideComposeVersion"
     }
 
     object Compose {
@@ -69,6 +71,8 @@ object AppDependencies {
         private const val composeVersion = "1.6.5"
         private const val activityComposeVersion = "1.8.2"
         private const val viewModelVersion = "2.5.1"
+        private const val composeMaterial3Version = "1.2.1"
+        private const val composeUiGraphicsVersion = "1.6.5"
 
         const val ui = "androidx.compose.ui:ui:$composeVersion"
         const val material = "androidx.compose.material:material:$composeVersion"
@@ -77,5 +81,7 @@ object AppDependencies {
         const val junit = "androidx.compose.ui:ui-test-junit4:$composeVersion"
         const val uiTooling = "androidx.compose.ui:ui-tooling:$composeVersion"
         const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:$viewModelVersion"
+        const val composeMaterial3 = "androidx.compose.material3:material3-android:$composeMaterial3Version"
+        const val composeUiGraphics = "androidx.compose.ui:ui-graphics:$composeUiGraphicsVersion"
     }
 }

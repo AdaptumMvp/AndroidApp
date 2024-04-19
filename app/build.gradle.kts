@@ -81,7 +81,7 @@ dependencies {
 
     // Room
     implementation(AppDependencies.Room.room)
-    implementation("androidx.compose.material3:material3-android:1.2.1")
+    implementation(AppDependencies.Compose.composeMaterial3)
     ksp(AppDependencies.Room.compiler)
 
     // Dagger
@@ -91,6 +91,7 @@ dependencies {
     // Glide
     implementation(AppDependencies.Glide.glide)
     ksp(AppDependencies.Glide.compiler)
+    implementation(AppDependencies.Glide.glide_compose)
 
     // Compose
     implementation(AppDependencies.Compose.ui)
@@ -98,6 +99,7 @@ dependencies {
     implementation(AppDependencies.Compose.material)
     implementation(AppDependencies.Compose.uiToolingPreview)
     implementation(AppDependencies.Compose.viewModel)
+    implementation(AppDependencies.Compose.composeUiGraphics)
 
     androidTestImplementation(AppDependencies.Compose.junit)
     debugImplementation(AppDependencies.Compose.uiTooling)

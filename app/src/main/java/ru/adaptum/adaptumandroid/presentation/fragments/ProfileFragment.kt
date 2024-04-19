@@ -1,4 +1,5 @@
 @file:Suppress("ktlint:standard:function-naming")
+@file:OptIn(ExperimentalGlideComposeApi::class)
 
 package ru.adaptum.adaptumandroid.presentation.fragments
 
@@ -38,6 +39,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
 import kotlinx.coroutines.flow.filterNotNull
 import ru.adaptum.adaptumandroid.AdaptumApp
 import ru.adaptum.adaptumandroid.R
@@ -113,11 +116,12 @@ fun ProfileHeader(
         Row(
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Image(
-                painter = painterResource(R.drawable.ic_user),
+            GlideImage(
+                model = profileData?.avatarUrl,
                 contentDescription = null,
                 modifier = Modifier.size(80.dp),
             )
+
             Spacer(modifier = Modifier.width(24.dp))
             Text(
                 text = profileData?.name ?: "",
