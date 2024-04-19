@@ -29,10 +29,10 @@ class EventViewHolder(private val view: View, private val registerAction: ((Int)
                             registerAction?.invoke(eventItem.id)
                             isVisible = false
                         }
-                        setBackgroundColor(view.context.resources.getColor(R.color.active_btn))
+                        setBackgroundColor(view.context.resources.getColor(R.color.active_btn, context.theme))
                         true
                     } else {
-                        setBackgroundColor(view.context.resources.getColor(R.color.secondary))
+                        setBackgroundColor(view.context.resources.getColor(R.color.secondary, context.theme))
                         false
                     }
             }

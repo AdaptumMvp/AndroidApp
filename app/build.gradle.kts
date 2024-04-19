@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
+    kotlin("plugin.serialization") version "1.9.22"
 }
 
 android {
@@ -78,6 +79,7 @@ dependencies {
     implementation(AppDependencies.Retrofit.converterGson)
     implementation(AppDependencies.Retrofit.okHttp)
     implementation(AppDependencies.Retrofit.okHttpLoggingInterceptor)
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
 
     // Room
     implementation(AppDependencies.Room.room)
