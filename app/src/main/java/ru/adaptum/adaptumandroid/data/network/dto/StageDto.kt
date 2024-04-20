@@ -19,7 +19,7 @@ data class StageDto(
         Stage(
             id = id,
             name = title,
-            status = userDataOnStage.status,
+            status = userDataOnStage.status ?: STATUS_NEW,
             description = description,
             date = parseDate(date),
             documentUrl = documentUrl ?: "",
@@ -31,5 +31,9 @@ data class StageDto(
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
         val outputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         return outputFormat.format(inputFormat.parse(dateDto)!!)
+    }
+
+    companion object {
+        private const val STATUS_NEW = "Новая"
     }
 }
