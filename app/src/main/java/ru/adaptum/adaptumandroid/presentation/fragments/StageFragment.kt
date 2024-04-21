@@ -1,6 +1,7 @@
 package ru.adaptum.adaptumandroid.presentation.fragments
 
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -62,7 +63,7 @@ class StageFragment : Fragment() {
     private fun setViews(stageListItem: StageListItem) {
         with(binding) {
             titleTv.text = stageListItem.name
-            descriptionTv.text = stageListItem.description
+            descriptionTv.text = Html.fromHtml(stageListItem.description, Html.FROM_HTML_MODE_LEGACY)
             if (stageListItem.documentUrl.isEmpty()) {
                 url.isVisible = false
             } else {
@@ -86,9 +87,7 @@ class StageFragment : Fragment() {
                     override fun shouldOverrideUrlLoading(
                         view: WebView,
                         url: String,
-                    ): Boolean {
-                        return false
-                    }
+                    ) = false
                 }
             videoView.settings.javaScriptEnabled = true
             videoView.loadData(videoStr, "text/html", "utf-8")
