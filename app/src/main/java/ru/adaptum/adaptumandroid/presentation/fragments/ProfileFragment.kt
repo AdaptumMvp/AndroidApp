@@ -26,7 +26,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.State
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -38,7 +39,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import kotlinx.coroutines.flow.filterNotNull
@@ -65,7 +65,7 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?,
     ) = ComposeView(requireContext()).apply {
         setContent {
-            ProfileScreen(viewModel)
+            ProfileScreen(viewModel.profileState, viewModel::logout)
         }
     }
 
@@ -86,8 +86,10 @@ class ProfileFragment : Fragment() {
 }
 
 @Composable
-fun ProfileScreen(viewModel: ProfileFragmentViewModel) {
-    val profileData by viewModel.profileState
+fun ProfileScreen(
+    profileState: State<ProfileDataUI>,
+    logout: () -> Unit,
+) {
     Box(
         modifier =
             Modifier
@@ -95,15 +97,15 @@ fun ProfileScreen(viewModel: ProfileFragmentViewModel) {
                 .background(colorResource(id = R.color.primary)),
     ) {
         Column {
-            ProfileHeader(profileData, viewModel::logout)
-            ProfileAdditionalInfo(profileData)
+            ProfileHeader(profileState.value, logout)
+            ProfileAdditionalInfo(profileState.value)
         }
     }
 }
 
 @Composable
 fun ProfileHeader(
-    profileData: ProfileDataUI?,
+    profileData: ProfileDataUI,
     logout: () -> Unit,
 ) {
     Box(
@@ -117,14 +119,14 @@ fun ProfileHeader(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             GlideImage(
-                model = profileData?.avatarUrl,
+                model = profileData.avatarUrl,
                 contentDescription = null,
                 modifier = Modifier.size(80.dp),
             )
 
             Spacer(modifier = Modifier.width(24.dp))
             Text(
-                text = profileData?.name ?: "",
+                text = profileData.name,
                 style = MaterialTheme.typography.titleLarge,
                 color = Color.White,
                 modifier = Modifier.width(120.dp),
@@ -235,5 +237,5 @@ fun ProfileAdditionalInfoItem(
 @Preview
 @Composable
 fun ProfileScreenPreview() {
-    ProfileScreen(viewModel())
+    ProfileScreen(rememberUpdatedState(ProfileDataUI.empty())) {}
 }

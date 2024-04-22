@@ -11,6 +11,7 @@ data class ProfileDataUI(
     val city: String,
 ) {
     companion object {
+
         fun fromProfileData(profileData: ProfileData) =
             ProfileDataUI(
                 avatarUrl = profileData.avatarUrl,
@@ -20,5 +21,14 @@ data class ProfileDataUI(
                 mail = profileData.mail,
                 city = profileData.city,
             )
+
+        fun empty() = ProfileDataUI(
+            avatarUrl = "",
+            name = "",
+            job = "",
+            organization = "",
+            mail = "",
+            city = "",
+        )
     }
 }

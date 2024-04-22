@@ -25,7 +25,7 @@ class ProfileFragmentViewModel
         val logoutCommand: SharedFlow<Unit?>
             get() = _logoutCommand.asSharedFlow()
 
-        val profileState = mutableStateOf<ProfileDataUI?>(null)
+        val profileState = mutableStateOf(ProfileDataUI.empty())
 
         fun init() {
             viewModelScope.launch(CoroutineExceptionHandler { coroutineContext, throwable -> throwable.printStackTrace() }) {
