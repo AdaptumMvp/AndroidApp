@@ -79,7 +79,9 @@ dependencies {
     implementation(AppDependencies.Retrofit.converterGson)
     implementation(AppDependencies.Retrofit.okHttp)
     implementation(AppDependencies.Retrofit.okHttpLoggingInterceptor)
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+
+    // Serialization
+    implementation(AppDependencies.Serialization.serializationJson)
 
     // Room
     implementation(AppDependencies.Room.room)

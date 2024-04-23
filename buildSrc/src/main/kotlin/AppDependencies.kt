@@ -41,6 +41,12 @@ object AppDependencies {
         const val okHttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
     }
 
+    object Serialization {
+        private const val serialization_json_version = "1.6.0"
+
+        const val serializationJson = "org.jetbrains.kotlinx:kotlinx-serialization-json:${serialization_json_version}"
+    }
+
     object Room {
         private const val version = "2.6.1"
 
