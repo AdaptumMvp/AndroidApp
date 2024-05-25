@@ -2,9 +2,10 @@ package ru.adaptum.adaptumandroid.presentation.model
 
 import ru.adaptum.adaptumandroid.domain.entity.AdaptPlan
 import ru.adaptum.adaptumandroid.domain.entity.MentorInfo
+import ru.adaptum.adaptumandroid.presentation.diffUtils.ListItem
 
 data class AdaptPlanListItem(
-    val id: Int,
+    override val id: Int,
     val mentor: MentorInfo,
     val groupName: String,
     val adaptPlanName: String,
@@ -13,7 +14,7 @@ data class AdaptPlanListItem(
     val countMaterials: String,
     val durationDays: String,
     val startDate: String,
-) {
+) : ListItem<AdaptPlanListItem> {
     companion object {
         fun fromModel(adaptPlan: AdaptPlan) =
             AdaptPlanListItem(
@@ -28,4 +29,11 @@ data class AdaptPlanListItem(
                 startDate = adaptPlan.startDate,
             )
     }
+
+    override fun contentEquals(item: ListItem<AdaptPlanListItem>): Boolean {
+        return this == item
+    }
+
+    override val content: AdaptPlanListItem
+        get() = this
 }

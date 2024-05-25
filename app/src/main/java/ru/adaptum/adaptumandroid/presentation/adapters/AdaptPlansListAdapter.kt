@@ -5,12 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import ru.adaptum.adaptumandroid.R
 import ru.adaptum.adaptumandroid.domain.entity.MentorInfo
-import ru.adaptum.adaptumandroid.presentation.diffUtils.AdaptPlanItemDiffCallback
+import ru.adaptum.adaptumandroid.presentation.diffUtils.DiffCallback
+import ru.adaptum.adaptumandroid.presentation.diffUtils.ListItem
 import ru.adaptum.adaptumandroid.presentation.model.AdaptPlanListItem
 import ru.adaptum.adaptumandroid.presentation.viewHolders.AdaptPlanViewHolder
 
-class AdaptPlansListAdapter : ListAdapter<AdaptPlanListItem, AdaptPlanViewHolder>(
-    AdaptPlanItemDiffCallback(),
+class AdaptPlansListAdapter : ListAdapter<ListItem<AdaptPlanListItem>, AdaptPlanViewHolder>(
+    DiffCallback(),
 ) {
     var onClickAction: ((Int) -> Unit)? = null
     var onClickSendMessageAction: ((MentorInfo) -> Unit)? = null
@@ -27,6 +28,6 @@ class AdaptPlansListAdapter : ListAdapter<AdaptPlanListItem, AdaptPlanViewHolder
         holder: AdaptPlanViewHolder,
         position: Int,
     ) {
-        holder.bind(currentList[position])
+        holder.bind(currentList[position].content)
     }
 }
